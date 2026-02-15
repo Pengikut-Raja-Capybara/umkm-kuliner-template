@@ -4,7 +4,15 @@ Panduan lengkap untuk deploy UMKM Kuliner Template ke berbagai platform.
 
 ---
 
-## 📋 Persiapan Sebelum Deploy
+## � Requirements
+
+- **Bun** v1.0+ ([Install Bun](https://bun.sh/docs/installation))
+- Git untuk version control
+- Account GitHub/Netlify/Vercel (untuk deployment)
+
+---
+
+## �📋 Persiapan Sebelum Deploy
 
 ### 1. Pastikan semua konten sudah diupdate
 - ✅ Edit `src/content/site.ts` dengan data bisnis Anda
@@ -15,8 +23,8 @@ Panduan lengkap untuk deploy UMKM Kuliner Template ke berbagai platform.
 
 ### 2. Test di local
 ```bash
-npm run build
-npm run preview
+bun run build
+bun run preview
 ```
 
 Buka http://localhost:4173 untuk test production build.
@@ -72,7 +80,7 @@ Ganti `<repo-name-anda>` dengan nama repository Anda.
 
 1. Build project:
 ```bash
-npm run build
+bun run build
 ```
 
 2. Buka [Netlify Drop](https://app.netlify.com/drop)
@@ -83,9 +91,11 @@ npm run build
 
 1. Connect repository GitHub ke Netlify
 2. Settings:
-   - **Build command:** `npm run build`
+   - **Build command:** `bun run build`
    - **Publish directory:** `dist`
 3. Deploy otomatis setiap push
+
+**Note:** Netlify mendukung Bun secara native. Build akan otomatis menggunakan Bun jika `bun.lockb` terdeteksi.
 
 ---
 
@@ -94,7 +104,7 @@ npm run build
 ### Via CLI
 
 ```bash
-npm install -g vercel
+bun install -g vercel
 vercel login
 vercel
 ```
@@ -102,8 +112,10 @@ vercel
 ### Via Dashboard
 
 1. Import repository dari GitHub
-2. Settings akan otomatis terdeteksi (Vite)
+2. Settings akan otomatis terdeteksi (Vite + Bun)
 3. Deploy!
+
+**Note:** Vercel mendukung Bun secara native. Pastikan file `bun.lockb` ada di repository.
 
 ---
 
@@ -112,7 +124,7 @@ vercel
 ### Setup
 
 ```bash
-npm install -g firebase-tools
+bun install -g firebase-tools
 firebase login
 firebase init hosting
 ```
@@ -125,7 +137,7 @@ Pilih:
 ### Deploy
 
 ```bash
-npm run build
+bun run build
 firebase deploy
 ```
 
@@ -137,12 +149,12 @@ firebase deploy
 
 ```dockerfile
 # Build stage
-FROM node:20-alpine AS builder
+FROM oven/bun:1 AS builder
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
+COPY package.json bun.lockb ./
+RUN bun install --frozen-lockfile
 COPY . .
-RUN npm run build
+RUN bun run build
 
 # Production stage
 FROM nginx:alpine
@@ -166,7 +178,7 @@ docker run -p 80:80 umkm-kuliner
 
 1. Build project:
 ```bash
-npm run build
+bun run build
 ```
 
 2. Upload semua file di folder `dist/` ke public_html atau www di hosting
@@ -241,7 +253,7 @@ Setelah deploy, optimalkan:
 
 ### CSS tidak load
 - Clear cache browser (Ctrl+Shift+Delete)
-- Build ulang dengan `npm run build`
+- Build ulang dengan `bun run build`
 
 ---
 

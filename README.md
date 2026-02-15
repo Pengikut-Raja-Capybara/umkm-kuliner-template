@@ -2,11 +2,34 @@
 
 Template website statis untuk 1 UMKM kategori kuliner. Cukup edit data di satu file dan pilih layout A-E.
 
+## ⚡ Teknologi
+
+- **Bun** - Fast JavaScript runtime & package manager
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS 4** - Utility-first CSS
+- **Vite 7** - Build tool dengan SWC compiler
+
+## 📝 Prerequisites
+
+Install Bun terlebih dahulu:
+
+```bash
+# Windows (PowerShell)
+powershell -c "irm bun.sh/install.ps1|iex"
+
+# macOS / Linux
+curl -fsSL https://bun.sh/install | bash
+
+# Atau via npm
+npm install -g bun
+```
+
 ## Cara jalanin lokal
 
 ```bash
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 ## Cara edit konten
@@ -77,7 +100,7 @@ Lalu sesuaikan path di [src/content/site.ts](src/content/site.ts).
 1. Build static:
 
 ```bash
-npm run build
+bun run build
 ```
 
 2. Upload isi folder `dist/` ke branch `gh-pages`
@@ -86,7 +109,7 @@ npm run build
 ### Cara 3: Deploy ke Hosting Lain (Netlify, Vercel, dll)
 
 ```bash
-npm run build
+bun run build
 ```
 
 Upload folder `dist/` atau connect repository untuk auto-deploy.
@@ -110,3 +133,20 @@ Semua layout memakai single page dengan anchor berikut:
 - #reviews
 - #location
 - #contact
+
+## 🛠️ Tech Stack
+
+- **Bun** - Runtime & package manager yang sangat cepat
+- **React 19** - Library UI terbaru
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS 4** - Utility-first styling dengan JIT
+- **Vite 7** - Lightning fast build tool
+- **SWC** - Super fast compiler
+
+## 📚 Dokumentasi Lengkap
+
+Lihat [DEPLOYMENT.md](DEPLOYMENT.md) untuk panduan deployment ke berbagai platform (GitHub Pages, Netlify, Vercel, Firebase, VPS, dll).
+
+---
+
+© 2026 UMKM Kuliner Template
