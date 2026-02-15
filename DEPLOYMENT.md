@@ -59,18 +59,33 @@ https://<username>.github.io/<repo-name>/
 
 **Catatan:** Setiap push ke branch `main` akan otomatis rebuild dan deploy.
 
-### 🔧 Update Base Path (Jika Perlu)
+### 🔧 Update Base Path (Penting!)
 
-Jika nama repository bukan `umkm-kuliner-template`, edit `vite.config.ts`:
+**Jika nama repository BUKAN `umkm-kuliner-template`**, edit `vite.config.ts` baris 8:
 
 ```typescript
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: process.env.GITHUB_ACTIONS ? '/<repo-name-anda>/' : '/',
+  base: process.env.GITHUB_ACTIONS ? '/<NAMA-REPO-ANDA>/' : '/',
 });
 ```
 
-Ganti `<repo-name-anda>` dengan nama repository Anda.
+**Contoh:** Jika repository bernama `warung-saya`, ubah jadi:
+```typescript
+base: process.env.GITHUB_ACTIONS ? '/warung-saya/' : '/',
+```
+
+**⚠️ Penting:** Base path harus sama dengan nama repository, jika tidak gambar dan asset tidak akan muncul!
+
+### ✅ Verifikasi Deploy
+
+Setelah deploy selesai, cek:
+1. Website bisa diakses di `https://<username>.github.io/<repo-name>/`
+2. Gambar semua muncul (bukan placeholder)
+3. Link WhatsApp dan Maps berfungsi
+4. Test di mobile
+
+Jika gambar tidak muncul, pastikan `base` di `vite.config.ts` sudah sesuai nama repo!
 
 ---
 

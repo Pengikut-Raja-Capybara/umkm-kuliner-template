@@ -95,6 +95,12 @@ Lalu sesuaikan path di [src/content/site.ts](src/content/site.ts).
 4. Setiap push ke branch `main` akan otomatis deploy
 5. Website akan live di: `https://<username>.github.io/<repo-name>/`
 
+**⚠️ Penting:** Jika nama repository bukan `umkm-kuliner-template`, edit `vite.config.ts` line 8:
+```typescript
+base: process.env.GITHUB_ACTIONS ? '/<nama-repo-anda>/' : '/',
+```
+Ganti `<nama-repo-anda>` dengan nama repository yang sebenarnya!
+
 ### Cara 2: Manual Deploy
 
 1. Build static:
@@ -145,7 +151,8 @@ Semua layout memakai single page dengan anchor berikut:
 
 ## 📚 Dokumentasi Lengkap
 
-Lihat [DEPLOYMENT.md](DEPLOYMENT.md) untuk panduan deployment ke berbagai platform (GitHub Pages, Netlify, Vercel, Firebase, VPS, dll).
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Panduan deployment ke berbagai platform
+- [TROUBLESHOOTING-IMAGES.md](TROUBLESHOOTING-IMAGES.md) - Fix gambar tidak muncul
 
 ---
 
