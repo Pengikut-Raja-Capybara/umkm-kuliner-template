@@ -1,0 +1,259 @@
+# 🚀 Panduan Deployment
+
+Panduan lengkap untuk deploy UMKM Kuliner Template ke berbagai platform.
+
+---
+
+## 📋 Persiapan Sebelum Deploy
+
+### 1. Pastikan semua konten sudah diupdate
+- ✅ Edit `src/content/site.ts` dengan data bisnis Anda
+- ✅ Ganti semua gambar di folder `public/assets/`
+- ✅ Test nomor WhatsApp (klik dari mobile)
+- ✅ Verifikasi link Google Maps
+- ✅ Pilih layout dan tema yang sesuai
+
+### 2. Test di local
+```bash
+npm run build
+npm run preview
+```
+
+Buka http://localhost:4173 untuk test production build.
+
+---
+
+## 🌐 GitHub Pages (Recommended)
+
+### ⚡ Otomatis dengan GitHub Actions
+
+**Langkah 1:** Push ke GitHub
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/<username>/<repo-name>.git
+git push -u origin main
+```
+
+**Langkah 2:** Aktifkan GitHub Pages
+1. Buka repository di GitHub
+2. Klik **Settings** (tab atas)
+3. Scroll ke bagian **Pages** (menu kiri)
+4. Di **Source**, pilih: **GitHub Actions**
+5. Tunggu beberapa menit, workflow akan berjalan otomatis
+
+**Langkah 3:** Akses website
+Website akan tersedia di:
+```
+https://<username>.github.io/<repo-name>/
+```
+
+**Catatan:** Setiap push ke branch `main` akan otomatis rebuild dan deploy.
+
+### 🔧 Update Base Path (Jika Perlu)
+
+Jika nama repository bukan `umkm-kuliner-template`, edit `vite.config.ts`:
+
+```typescript
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  base: process.env.GITHUB_ACTIONS ? '/<repo-name-anda>/' : '/',
+});
+```
+
+Ganti `<repo-name-anda>` dengan nama repository Anda.
+
+---
+
+## 🌍 Netlify
+
+### Via Drag & Drop
+
+1. Build project:
+```bash
+npm run build
+```
+
+2. Buka [Netlify Drop](https://app.netlify.com/drop)
+3. Drag folder `dist/` ke halaman tersebut
+4. Website langsung live!
+
+### Via Git Repository
+
+1. Connect repository GitHub ke Netlify
+2. Settings:
+   - **Build command:** `npm run build`
+   - **Publish directory:** `dist`
+3. Deploy otomatis setiap push
+
+---
+
+## ▲ Vercel
+
+### Via CLI
+
+```bash
+npm install -g vercel
+vercel login
+vercel
+```
+
+### Via Dashboard
+
+1. Import repository dari GitHub
+2. Settings akan otomatis terdeteksi (Vite)
+3. Deploy!
+
+---
+
+## 🔥 Firebase Hosting
+
+### Setup
+
+```bash
+npm install -g firebase-tools
+firebase login
+firebase init hosting
+```
+
+Pilih:
+- Public directory: `dist`
+- Single-page app: `Yes`
+- Automatic builds: `No` (atau setup GitHub Actions)
+
+### Deploy
+
+```bash
+npm run build
+firebase deploy
+```
+
+---
+
+## 🐳 Docker + Nginx
+
+### Dockerfile
+
+```dockerfile
+# Build stage
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Production stage
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+### Build & Run
+
+```bash
+docker build -t umkm-kuliner .
+docker run -p 80:80 umkm-kuliner
+```
+
+---
+
+## 🖥️ VPS / Shared Hosting
+
+### Upload Manual
+
+1. Build project:
+```bash
+npm run build
+```
+
+2. Upload semua file di folder `dist/` ke public_html atau www di hosting
+
+3. Jika menggunakan subdirectory (misal: domain.com/kuliner/), edit `vite.config.ts`:
+```typescript
+base: '/kuliner/'
+```
+Lalu build ulang.
+
+### Via FTP
+
+Gunakan FileZilla atau FTP client lainnya untuk upload folder `dist/`.
+
+---
+
+## ⚙️ Custom Domain
+
+### GitHub Pages
+
+1. Buat file `CNAME` di folder `public/`:
+```
+www.warunganda.com
+```
+
+2. Di DNS provider, tambah record:
+```
+Type: CNAME
+Name: www
+Value: <username>.github.io
+```
+
+3. Di GitHub repo Settings > Pages, masukkan custom domain
+
+### Netlify / Vercel
+
+Dashboard → Domain Settings → Add custom domain
+
+---
+
+## 🔍 SEO & Performance
+
+Setelah deploy, optimalkan:
+
+1. **Google Search Console**
+   - Submit sitemap
+   - Verifikasi kepemilikan
+
+2. **Performance**
+   - Test di [PageSpeed Insights](https://pagespeed.web.dev/)
+   - Compress gambar (gunakan WebP)
+
+3. **Social Media**
+   - Update `public/assets/og.jpg` (1200x630px)
+   - Test dengan [Facebook Debugger](https://developers.facebook.com/tools/debug/)
+
+---
+
+## 🐛 Troubleshooting
+
+### Gambar tidak muncul
+- Pastikan path gambar benar di `site.ts`
+- Gambar harus ada di folder `public/assets/`
+
+### Routing error (404)
+- Ini single-page app, tidak ada routing error
+- Jika deploy di subdirectory, set `base` di `vite.config.ts`
+
+### WhatsApp link tidak berfungsi
+- Format: `+62` + nomor tanpa 0 di depan
+- Test dari mobile device
+
+### CSS tidak load
+- Clear cache browser (Ctrl+Shift+Delete)
+- Build ulang dengan `npm run build`
+
+---
+
+## 📞 Support
+
+Jika ada masalah deployment, cek:
+1. Build log di GitHub Actions
+2. Console browser (F12)
+3. Network tab untuk error loading assets
+
+---
+
+**Happy Deploying! 🎉**
+
+© 2026 UMKM Kuliner Template
