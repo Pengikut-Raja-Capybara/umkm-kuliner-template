@@ -8,10 +8,10 @@ type BadgeProps = {
 const Badge = ({ children, variant = "soft" }: BadgeProps) => {
   const variantClass =
     variant === "solid"
-      ? "bg-[var(--primary)] text-white border border-white/40"
-      : "bg-[rgba(217,119,6,0.8)] text-[var(--primary-dark)] border border-[var(--stroke)]";
+      ? "bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] text-white border border-white/50 shadow-lg"
+      : "bg-gradient-to-r from-[var(--bg)] to-white text-[var(--primary-dark)] border border-[var(--primary)]/30 shadow-sm";
   return (
-    <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs ${variantClass}`}>
+    <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold backdrop-blur ${variantClass}`}>
       {children}
     </span>
   );

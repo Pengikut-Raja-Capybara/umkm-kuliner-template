@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@400;600;700&display=swap");
 
 :root {
   --text: #2b2420;
@@ -61,6 +60,102 @@
   --surface: #fffaf3;
 }
 
+[data-theme="seafood"] {
+  --bg: #ecfeff;
+  --primary: #06b6d4;
+  --primary-dark: #0e7490;
+  --accent: #0891b2;
+  --surface: #ffffff;
+}
+
+[data-theme="steakhouse"] {
+  --bg: #fef2f2;
+  --primary: #991b1b;
+  --primary-dark: #7f1d1d;
+  --accent: #44403c;
+  --surface: #fffbf5;
+}
+
+[data-theme="sakura"] {
+  --bg: #fef2f4;
+  --primary: #ec4899;
+  --primary-dark: #be185d;
+  --accent: #dc2626;
+  --surface: #ffffff;
+}
+
+[data-theme="italiano"] {
+  --bg: #f7fee7;
+  --primary: #16a34a;
+  --primary-dark: #15803d;
+  --accent: #dc2626;
+  --surface: #ffffff;
+}
+
+[data-theme="fiesta"] {
+  --bg: #fef3c7;
+  --primary: #dc2626;
+  --primary-dark: #b91c1c;
+  --accent: #f59e0b;
+  --surface: #fffef5;
+}
+
+[data-theme="lavender"] {
+  --bg: #faf5ff;
+  --primary: #a855f7;
+  --primary-dark: #7e22ce;
+  --accent: #ec4899;
+  --surface: #ffffff;
+}
+
+[data-theme="matcha"] {
+  --bg: #f0fdf4;
+  --primary: #22c55e;
+  --primary-dark: #16a34a;
+  --accent: #15803d;
+  --surface: #ffffff;
+}
+
+[data-theme="mocha"] {
+  --bg: #fef8f3;
+  --primary: #92400e;
+  --primary-dark: #78350f;
+  --accent: #451a03;
+  --surface: #fffbf5;
+}
+
+[data-theme="crimson"] {
+  --bg: #fff7ed;
+  --primary: #ef4444;
+  --primary-dark: #dc2626;
+  --accent: #f59e0b;
+  --surface: #ffffff;
+}
+
+[data-theme="spice"] {
+  --bg: #fff1f2;
+  --primary: #ea580c;
+  --primary-dark: #c2410c;
+  --accent: #dc2626;
+  --surface: #fffaf5;
+}
+
+[data-theme="mint"] {
+  --bg: #f0fdfa;
+  --primary: #14b8a6;
+  --primary-dark: #0f766e;
+  --accent: #0d9488;
+  --surface: #ffffff;
+}
+
+[data-theme="sunset"] {
+  --bg: #fef3f2;
+  --primary: #f97316;
+  --primary-dark: #ea580c;
+  --accent: #a855f7;
+  --surface: #ffffff;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -99,5 +194,34 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+@keyframes subtle-zoom {
+  0%, 100% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes page-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

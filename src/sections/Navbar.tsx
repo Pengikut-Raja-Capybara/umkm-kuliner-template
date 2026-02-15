@@ -25,18 +25,18 @@ const Navbar = ({ brand, phone, features, promoEnabled, navItems }: NavbarProps)
   const menuItems = navItems ?? defaultItems;
 
   return (
-    <nav className="sticky top-0 z-20 border-b border-[var(--stroke)] bg-white/90 backdrop-blur">
-      <Container className="flex flex-wrap items-center justify-between gap-4 py-4">
+    <nav className="sticky top-0 z-20 border-b border-[var(--stroke)]/40 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.08)] backdrop-blur-md">
+      <Container className="flex flex-wrap items-center justify-between gap-4 py-5">
         <div className="flex items-center gap-3">
-          <ImageWithFallback src={brand.logo} alt={brand.name} className="h-11 w-11 rounded-xl object-cover" />
+          <ImageWithFallback src={brand.logo} alt={brand.name} className="h-12 w-12 rounded-xl object-cover shadow-md ring-2 ring-[var(--primary)]/20" />
           <div>
-            <span className="block font-bold">{brand.name}</span>
+            <span className="block text-lg font-bold text-[var(--text)]">{brand.name}</span>
             <span className="text-xs text-[var(--muted)] hidden sm:block">{brand.tagline}</span>
           </div>
         </div>
-        <div className="hidden items-center gap-4 text-sm md:flex">
+        <div className="hidden items-center gap-6 text-sm font-medium md:flex">
           {menuItems.map((item) => (
-            <a key={item.href} href={item.href}>
+            <a key={item.href} href={item.href} className="transition-colors hover:text-[var(--primary)]">
               {item.label}
             </a>
           ))}

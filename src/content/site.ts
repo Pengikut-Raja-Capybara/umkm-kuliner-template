@@ -91,15 +91,14 @@ const site: SiteData = {
   },
   seo: {
     title: "Warung Raja Capybara Kuliner | Kuliner Rumahan",
-    description:
-      "Menu rumahan hangat, paket hemat, dan sambal khas. Pesan WA dan nikmati di rumah.",
+    description: "Menu rumahan hangat, paket hemat, dan sambal khas. Pesan WA dan nikmati di rumah.",
     ogImage: "/assets/og.jpg",
   },
   story: {
-    title: "Cerita Dapur Kami",
-    text: "Sejak 2018 kami memasak menu rumahan dengan bumbu segar dan resep keluarga. Semua dibuat setiap hari agar selalu hangat dan siap dinikmati.",
+    title: "Warisan Rasa dari Dapur Rumah",
+    text: "Berawal di tahun 2018, kami percaya bahwa makanan terbaik lahir dari ketulusan resep keluarga. Di Warung Raja Capybara, setiap piring adalah cerita tentang bumbu segar yang diulek manual dan masakan yang disajikan hangat setiap hari. Kami tidak hanya menyajikan makanan, tapi juga rasa rindu akan masakan rumah yang halal, jujur, dan istimewa.",
     image: "/assets/gallery/space-1.jpg",
-    highlights: ["Sejak 2018", "Halal", "Bumbu segar"],
+    highlights: ["Sejak 2018", "Halal", "Bumbu segar", "Ketulusan resep keluarga"],
   },
   orderSteps: {
     title: "Cara Pesan",

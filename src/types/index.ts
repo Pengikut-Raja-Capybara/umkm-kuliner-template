@@ -7,7 +7,19 @@ export type ThemeKey =
   | "ocean"
   | "nightmarket"
   | "citrus"
-  | "terra";
+  | "terra"
+  | "seafood"
+  | "steakhouse"
+  | "sakura"
+  | "italiano"
+  | "fiesta"
+  | "lavender"
+  | "matcha"
+  | "mocha"
+  | "crimson"
+  | "spice"
+  | "mint"
+  | "sunset";
 
 export type Brand = {
   name: string;

@@ -61,12 +61,12 @@ const BestMenu = ({
   return (
     <Section id={sectionId || undefined}>
       <Container>
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-6">
+        <div className="mb-10 flex flex-wrap items-center justify-between gap-6">
           <div>
-            <p className="text-xs uppercase tracking-[0.14em] text-[var(--primary-dark)]">
-              Pilihan terbaik
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary)]">
+              ✦ Pilihan terbaik
             </p>
-            <h2 className="mt-2 text-3xl font-serif">{title}</h2>
+            <h2 className="mt-3 pb-1 bg-gradient-to-r from-[var(--text)] to-[var(--primary-dark)] bg-clip-text text-4xl font-serif text-transparent lg:text-5xl">{title}</h2>
           </div>
           {showCategories && (
             <div className="flex flex-wrap gap-2">
@@ -74,10 +74,10 @@ const BestMenu = ({
                 <button
                   key={category}
                   type="button"
-                  className={`rounded-full border px-4 py-1 text-sm transition ${
+                  className={`rounded-full border px-5 py-2 text-sm font-medium shadow-sm transition-all duration-300 ${
                     activeCategory === category
-                      ? "border-transparent bg-[var(--primary)] text-white outline outline-1 outline-white/40"
-                      : "border-[var(--stroke)] bg-white text-[var(--text)]"
+                      ? "border-transparent bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] text-white shadow-lg scale-105"
+                      : "border-[var(--stroke)] bg-white text-[var(--text)] hover:border-[var(--primary)] hover:bg-[var(--bg)]"
                   }`}
                   onClick={() => setActiveCategory(category)}
                 >
@@ -104,20 +104,21 @@ const BestMenu = ({
                 className="group relative w-full overflow-hidden text-left"
                 onClick={() => setActiveImage({ src: item.image, alt: item.name })}
               >
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <ImageWithFallback
                   src={item.image}
                   alt={item.name}
-                  className="h-44 w-full object-cover transition duration-300 group-hover:scale-105"
+                  className="h-48 w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-105"
                 />
                 {item.badge && <div className="absolute left-4 top-4"><Badge>{item.badge}</Badge></div>}
               </button>
-              <div className="flex flex-col gap-4 p-6">
+              <div className="flex flex-col gap-5 p-7">
                 <div>
-                  <h3 className="text-lg font-semibold">{item.name}</h3>
-                  {item.description && <p className="mt-2 text-sm text-[var(--muted)]">{item.description}</p>}
+                  <h3 className="text-xl font-bold text-[var(--text)] group-hover:text-[var(--primary)] transition-colors">{item.name}</h3>
+                  {item.description && <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{item.description}</p>}
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">{formatPrice(item.price)}</span>
+                  <span className="pb-1 text-lg font-bold bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] bg-clip-text text-transparent">{formatPrice(item.price)}</span>
                   <Button
                     href={buildWaLink(phone, `Halo! Saya mau pesan ${item.name}.`)}
                     variant="ghost"
